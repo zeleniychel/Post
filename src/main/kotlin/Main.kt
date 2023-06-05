@@ -17,7 +17,7 @@ object WallService {
     fun update(post: Post) :Boolean {
         for ((index, postI) in posts.withIndex()) {
             if (postI.id == post.id) {
-                posts[index] = post
+                posts[index] = post.copy()
                 return true
             }
         }
