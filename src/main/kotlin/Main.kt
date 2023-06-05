@@ -23,17 +23,8 @@ object WallService {
         }
         return false
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    fun clear () {
+        posts = emptyArray()
+        id = 0
+    }
 }
