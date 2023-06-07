@@ -7,18 +7,17 @@ class WallServiceTest {
     @Before
     fun clearBeforeTest() {
         WallService.clear()
+        WallService.add(Post())
     }
     @Test
     fun updateTrue() {
-        val post = Post(0)
-        WallService.update(post)
-        assertTrue(true)
+        val post = Post(1)
+        assertTrue(WallService.update(post))
     }
     @Test
     fun updateFalse() {
-        val post = Post(2)
-        WallService.update(post)
-        assertFalse(false)
+        val post = Post(0)
+        assertFalse(WallService.update(post))
     }
     @Test
     fun add() {
