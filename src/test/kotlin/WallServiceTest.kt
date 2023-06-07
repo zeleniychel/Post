@@ -21,8 +21,7 @@ class WallServiceTest {
     }
     @Test
     fun add() {
-        val post = Post()
-        WallService.add(post)
-        assertEquals(1,post.id )
+        val post = WallService.add(Post())
+        assertEquals(2,post.id )
     }
 }
