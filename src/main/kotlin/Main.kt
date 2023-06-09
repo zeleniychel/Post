@@ -1,6 +1,7 @@
 fun main() {
-    WallService.add(Post ())
-    print(WallService.posts[0])
+    val post = Post(donut = null)
+    WallService.add(post)
+    print(post)
 
 }
 
