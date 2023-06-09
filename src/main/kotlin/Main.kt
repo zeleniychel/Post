@@ -1,3 +1,4 @@
+
 fun main() {
     val post = Post(donut = null)
     WallService.add(post)
@@ -7,7 +8,7 @@ fun main() {
 
 object WallService {
 
-    var posts = emptyArray<Post>()
+    private var posts = emptyArray<Post>()
     private var id = 0
 
     fun add (post: Post) :Post {

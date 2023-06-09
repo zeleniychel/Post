@@ -1,5 +1,4 @@
-import Attachments.Geotag
-import Attachments.GeotagAttachment
+import Attachments.*
 import PostObjects.*
 
 data class Post(
@@ -27,7 +26,13 @@ data class Post(
         val isFavorite: Boolean = true,
         val donut: Donut?,
         val postponedId: Int = 333,
-        val attachment: Array<Attachment>
+        val attachment: Array<Attachment> = arrayOf(
+                AudioAttachment("audio", Audio()),
+                GeotagAttachment ("geotag", Geotag()),
+                GiftAttachment ("gift", Gift ()),
+                GraffitiAttachment ("graffiti", Graffiti()),
+                VideoAttachment ("video", Video())
+                )
 ) {
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
