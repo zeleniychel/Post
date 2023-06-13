@@ -2,11 +2,11 @@ package Attachments
 
 import Attachment
 
-data class AudioAttachment (override val type: String = "audio", val audio: Audio) : Attachment
+data class AudioAttachment(override val type: String = "audio", val audio: Audio) : Attachment
 
-data class Audio (
+data class Audio(
     val id: Int = 333,
-    val ownerId: Int =54545,
+    val ownerId: Int = 54545,
     val artist: String = "artist",
     val title: String = "title",
     val duration: Int = 55,

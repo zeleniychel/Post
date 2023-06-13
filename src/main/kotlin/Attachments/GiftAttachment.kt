@@ -4,7 +4,7 @@ import Attachment
 
 data class GiftAttachment(override val type: String = "gift", val gift: Gift) : Attachment
 
-data class Gift (
+data class Gift(
     val id: Int = 1243,
     val thumb256: String = "thumb256",
     val thumb96: String = "thumb96",

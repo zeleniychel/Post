@@ -1,4 +1,4 @@
 package Exceptions
 
-class WrongReportParameterReasonException (message: String) : RuntimeException (message) {
+class WrongReportParameterReasonException(message: String) : RuntimeException(message) {
 }

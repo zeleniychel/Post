@@ -6,8 +6,9 @@ import Exceptions.WrongReportParameterReasonException
 fun main() {
     val post = Post(donut = null)
     WallService.add(post)
-    try{
-        WallService.reportComment(2,2,1)
+    print(post)
+    try {
+        WallService.reportComment(2, 2, 1)
     } catch (e: RuntimeException) {
         print(e.message)
     }
@@ -20,12 +21,12 @@ object WallService {
     private var id = 0
     private var commentsArray = emptyArray<CommentOnWall>()
 
-    fun add (post: Post) :Post {
+    fun add(post: Post): Post {
         posts += post.copy(id = ++id, comments = post.comments.copy())
         return posts.last()
     }
 
-    fun update(post: Post) :Boolean {
+    fun update(post: Post): Boolean {
         for ((index, postI) in posts.withIndex()) {
             if (postI.id == post.id) {
                 posts[index] = post.copy(comments = post.comments.copy())
@@ -34,11 +35,14 @@ object WallService {
         }
         return false
     }
-    fun clear () {
+
+    fun clear() {
         posts = emptyArray<Post>()
         id = 0
+        commentsArray = emptyArray<CommentOnWall>()
     }
-    fun createComment (postId: Int, comment: CommentOnWall): CommentOnWall {
+
+    fun createComment(postId: Int, comment: CommentOnWall): CommentOnWall {
         for (post in posts) {
             if (post.id == postId) {
                 commentsArray += comment.copy()
@@ -49,7 +53,7 @@ object WallService {
 
     }
 
-    fun reportComment (postOwnerId: Int, commentId:Int, reason: Int): Boolean {
+    fun reportComment(postOwnerId: Int, commentId: Int, reason: Int): Boolean {
         var checkId = 0
         var checkCommentId = 0
         var checkReason = -1
@@ -58,7 +62,7 @@ object WallService {
                 checkId = postOwnerId
                 if (commentId == post.comments.id) {
                     checkCommentId = commentId
-                    if (reason in 0..8) {
+                    if ((reason in (0..6)) || reason == 8) {
                         checkReason = reason
                     }
                 }
