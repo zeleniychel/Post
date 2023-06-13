@@ -2,7 +2,7 @@
 fun main() {
     val post = Post(donut = null)
     WallService.add(post)
-    print(post)
+    print(WallService.crateComment(0, CommentOnWall()))
 
 }
 
@@ -10,6 +10,7 @@ object WallService {
 
     private var posts = emptyArray<Post>()
     private var id = 0
+    private var commentsArray = emptyArray<CommentOnWall>()
 
     fun add (post: Post) :Post {
         posts += post.copy(id = ++id, comments = post.comments.copy())
@@ -28,5 +29,15 @@ object WallService {
     fun clear () {
         posts = emptyArray<Post>()
         id = 0
+    }
+    fun crateComment (postId: Int, comment: CommentOnWall): CommentOnWall {
+        for (post in posts) {
+            if (post.id == postId) {
+                commentsArray += comment.copy()
+                return commentsArray.last()
+            }
+        }
+        throw PostNotFoundException("No post with $postId")
+
     }
 }

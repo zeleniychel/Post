@@ -24,4 +24,16 @@ class WallServiceTest {
         val post = WallService.add(Post(donut = null))
         assertEquals(2,post.id )
     }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        WallService.crateComment(1, CommentOnWall())
+
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun dontShouldThrow() {
+        WallService.crateComment(0, CommentOnWall())
+
+    }
 }
