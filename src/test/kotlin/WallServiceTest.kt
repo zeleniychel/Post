@@ -1,3 +1,4 @@
+import Exceptions.PostNotFoundException
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -27,13 +28,13 @@ class WallServiceTest {
 
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
-        WallService.crateComment(1, CommentOnWall())
+        WallService.createComment(1, CommentOnWall())
 
     }
 
     @Test(expected = PostNotFoundException::class)
     fun dontShouldThrow() {
-        WallService.crateComment(0, CommentOnWall())
+        WallService.createComment(0, CommentOnWall())
 
     }
 }

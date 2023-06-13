@@ -1,8 +1,16 @@
+import Exceptions.PostNotFoundException
+import Exceptions.WrongReportParameterCommentIdException
+import Exceptions.WrongReportParameterOwnerIdException
+import Exceptions.WrongReportParameterReasonException
 
 fun main() {
     val post = Post(donut = null)
     WallService.add(post)
-    print(WallService.crateComment(0, CommentOnWall()))
+    try{
+        WallService.reportComment(2,2,1)
+    } catch (e: RuntimeException) {
+        print(e.message)
+    }
 
 }
 
@@ -30,7 +38,7 @@ object WallService {
         posts = emptyArray<Post>()
         id = 0
     }
-    fun crateComment (postId: Int, comment: CommentOnWall): CommentOnWall {
+    fun createComment (postId: Int, comment: CommentOnWall): CommentOnWall {
         for (post in posts) {
             if (post.id == postId) {
                 commentsArray += comment.copy()
@@ -39,5 +47,26 @@ object WallService {
         }
         throw PostNotFoundException("No post with $postId")
 
+    }
+
+    fun reportComment (postOwnerId: Int, commentId:Int, reason: Int): Boolean {
+        var checkId = 0
+        var checkCommentId = 0
+        var checkReason = -1
+        for (post in posts) {
+            if (postOwnerId == post.ownerId) {
+                checkId = postOwnerId
+                if (commentId == post.comments.id) {
+                    checkCommentId = commentId
+                    if (reason in 0..8) {
+                        checkReason = reason
+                    }
+                }
+            }
+        }
+        if (checkId == 0) throw WrongReportParameterOwnerIdException("Wrong owner ID $postOwnerId")
+        if (checkCommentId == 0) throw WrongReportParameterCommentIdException("Wrong comment ID $commentId")
+        if (checkReason == -1) throw WrongReportParameterReasonException("Wrong reason $reason")
+        else return true
     }
 }
